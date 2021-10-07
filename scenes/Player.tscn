@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking1.png" type="Texture" id=1]
 [ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking2.png" type="Texture" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking44.png" type="Texture" id=22]
 [ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking46.png" type="Texture" id=23]
 [ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking42.png" type="Texture" id=24]
+[ext_resource path="res://ressources/Player_anim/jump/jumping_ascent.png" type="Texture" id=25]
+[ext_resource path="res://ressources/Player_anim/jump/jumping_descent.png" type="Texture" id=26]
 [ext_resource path="res://ressources/Player_anim/connected/connected4.png" type="Texture" id=192]
 [ext_resource path="res://ressources/Player_anim/connected/connected3.png" type="Texture" id=193]
 [ext_resource path="res://ressources/Player_anim/connected/connected2.png" type="Texture" id=194]
@@ -129,6 +131,16 @@ animations = [ {
 "loop": true,
 "name": "idle_matrix",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": true,
+"name": "jump_descent",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "jump_ascent",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -139,8 +151,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "walk"
-frame = 3
+animation = "jump_descent"
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

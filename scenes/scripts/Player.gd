@@ -7,6 +7,7 @@ var isWalking : bool = false;
 var rNG : RandomNumberGenerator = RandomNumberGenerator.new()
 var gravity : int = 300;
 var jumpForce : int = -90;
+var isJumping : bool = true;
 
 
 
@@ -21,6 +22,7 @@ func getInput():
 
 	if jump and is_on_floor():
 		velocity.y = jumpForce;
+		isJumping = true;
 
 	if right:
 		velocity.x += speed;
@@ -43,6 +45,9 @@ func _physics_process(delta):
 	animate();
 	velocity.y += gravity * delta;
 	velocity = move_and_slide(velocity, Vector2(0, -1));
+	
+	if isJumping and is_on_floor():
+		isJumping = false;
 
 
 
@@ -63,3 +68,8 @@ func animate():
 				$AnimatedSprite.animation = "idle_thinking";
 			elif randomIdle == 4:
 				$AnimatedSprite.animation = "idle_windob";
+
+	if velocity.y < -1:
+		$AnimatedSprite.animation = "jump_ascent";
+	elif velocity.y > 1:
+		$AnimatedSprite.animation = "jump_descent";
