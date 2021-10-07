@@ -110,28 +110,28 @@ animations = [ {
 "name": "idle_pong",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 220 ), ExtResource( 208 ), ExtResource( 221 ), ExtResource( 214 ), ExtResource( 215 ), ExtResource( 237 ), ExtResource( 205 ), ExtResource( 222 ), ExtResource( 233 ), ExtResource( 234 ), ExtResource( 218 ), ExtResource( 216 ), ExtResource( 226 ), ExtResource( 217 ), ExtResource( 227 ), ExtResource( 210 ), ExtResource( 207 ), ExtResource( 204 ), ExtResource( 229 ), ExtResource( 224 ) ],
+"frames": [ ExtResource( 196 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ) ],
 "loop": true,
-"name": "idle_matrix",
-"speed": 10.0
+"name": "walk",
+"speed": 6.5
 }, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 18 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 19 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 23 ) ],
 "loop": true,
 "name": "idle_thinking",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 196 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 231 ), ExtResource( 206 ), ExtResource( 235 ), ExtResource( 223 ), ExtResource( 219 ), ExtResource( 225 ), ExtResource( 241 ), ExtResource( 202 ), ExtResource( 236 ), ExtResource( 238 ), ExtResource( 240 ), ExtResource( 228 ), ExtResource( 209 ), ExtResource( 211 ), ExtResource( 230 ), ExtResource( 206 ), ExtResource( 231 ) ],
 "loop": true,
 "name": "idle_windob",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 220 ), ExtResource( 208 ), ExtResource( 221 ), ExtResource( 214 ), ExtResource( 215 ), ExtResource( 237 ), ExtResource( 205 ), ExtResource( 222 ), ExtResource( 233 ), ExtResource( 234 ), ExtResource( 218 ), ExtResource( 216 ), ExtResource( 226 ), ExtResource( 217 ), ExtResource( 227 ), ExtResource( 210 ), ExtResource( 207 ), ExtResource( 204 ), ExtResource( 229 ), ExtResource( 224 ) ],
+"loop": true,
+"name": "idle_matrix",
+"speed": 10.0
 } ]
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D"]
 script = ExtResource( 261 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -139,7 +139,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "connected"
+animation = "walk"
 frame = 3
 playing = true
 

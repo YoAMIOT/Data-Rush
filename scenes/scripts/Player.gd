@@ -1,38 +1,48 @@
 extends KinematicBody2D
 
 ###Variables###
-var speed : int = 200;
+var speed : int = 40;
 var velocity : Vector2 = Vector2();
 var isWalking : bool = false;
 var rNG : RandomNumberGenerator = RandomNumberGenerator.new()
+var gravity : int = 300;
+var jumpForce : int = -90;
 
 
 
 ###Function to get the input of the player###
 func getInput():
-	velocity = Vector2();
-	if Input.is_action_pressed("right"):
-		velocity.x += 1;
+	velocity.x = 0;
+	var right = Input.is_action_pressed("right");
+	var left = Input.is_action_pressed("left");
+	var jump = Input.is_action_just_pressed("jump");
+	var rightRel = Input.is_action_just_released("right");
+	var leftRel = Input.is_action_just_released("left");
+
+	if jump and is_on_floor():
+		velocity.y = jumpForce;
+
+	if right:
+		velocity.x += speed;
 		isWalking = true;
 		$AnimatedSprite.flip_h = false;
-	if Input.is_action_just_released("right"):
+	if rightRel:
 		isWalking = false;
-
-	if Input.is_action_pressed("left"):
-		velocity.x -= 1;
+	if left:
+		velocity.x -= speed;
 		isWalking = true;
 		$AnimatedSprite.flip_h = true;
-	if Input.is_action_just_released("left"):
+	if leftRel:
 		isWalking = false;
-	velocity = velocity.normalized() * speed;
 
 
 
 ###Process Function###
 func _physics_process(delta):
 	getInput();
-	velocity = move_and_slide(velocity);
 	animate();
+	velocity.y += gravity * delta;
+	velocity = move_and_slide(velocity, Vector2(0, -1));
 
 
 
