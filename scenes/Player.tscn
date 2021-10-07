@@ -110,11 +110,6 @@ animations = [ {
 "name": "idle_pong",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 196 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 220 ), ExtResource( 208 ), ExtResource( 221 ), ExtResource( 214 ), ExtResource( 215 ), ExtResource( 237 ), ExtResource( 205 ), ExtResource( 222 ), ExtResource( 233 ), ExtResource( 234 ), ExtResource( 218 ), ExtResource( 216 ), ExtResource( 226 ), ExtResource( 217 ), ExtResource( 227 ), ExtResource( 210 ), ExtResource( 207 ), ExtResource( 204 ), ExtResource( 229 ), ExtResource( 224 ) ],
 "loop": true,
 "name": "idle_matrix",
@@ -124,6 +119,11 @@ animations = [ {
 "loop": true,
 "name": "idle_thinking",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 196 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 231 ), ExtResource( 206 ), ExtResource( 235 ), ExtResource( 223 ), ExtResource( 219 ), ExtResource( 225 ), ExtResource( 241 ), ExtResource( 202 ), ExtResource( 236 ), ExtResource( 238 ), ExtResource( 240 ), ExtResource( 228 ), ExtResource( 209 ), ExtResource( 211 ), ExtResource( 230 ), ExtResource( 206 ), ExtResource( 231 ) ],
 "loop": true,
@@ -140,7 +140,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "connected"
-frame = 1
+frame = 3
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
