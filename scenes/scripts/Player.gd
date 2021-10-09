@@ -2,39 +2,30 @@ extends KinematicBody2D
 
 ###Variables###
 var speed : int = 40;
-var velocity : Vector2 = Vector2();
-var isWalking : bool = false;
-var rNG : RandomNumberGenerator = RandomNumberGenerator.new()
 var gravity : int = 300;
 var jumpForce : int = -90;
+var velocity : Vector2 = Vector2.ZERO;
+var rNG : RandomNumberGenerator = RandomNumberGenerator.new()
+var isWalking : bool = false;
 var isJumping : bool = true;
 
 
 
 ###Function to get the input of the player###
 func getInput():
-	velocity.x = 0;
-	var right = Input.is_action_pressed("right");
-	var left = Input.is_action_pressed("left");
-	var jump = Input.is_action_just_pressed("jump");
-	var rightRel = Input.is_action_just_released("right");
-	var leftRel = Input.is_action_just_released("left");
-
-	if jump and is_on_floor():
-		velocity.y = jumpForce;
-		isJumping = true;
-
-	if right:
+	velocity.x = 0
+	if Input.is_action_pressed("right"):
 		velocity.x += speed;
 		isWalking = true;
 		$AnimatedSprite.flip_h = false;
-	if rightRel:
+	if Input.is_action_just_released("right"):
 		isWalking = false;
-	if left:
+
+	if Input.is_action_pressed("left"):
 		velocity.x -= speed;
 		isWalking = true;
 		$AnimatedSprite.flip_h = true;
-	if leftRel:
+	if Input.is_action_just_released("left"):
 		isWalking = false;
 
 
@@ -44,10 +35,15 @@ func _physics_process(delta):
 	getInput();
 	animate();
 	velocity.y += gravity * delta;
-	velocity = move_and_slide(velocity, Vector2(0, -1));
-	
-	if isJumping and is_on_floor():
+	velocity = move_and_slide(velocity.rotated(rotation), -transform.y, true, 4, PI/3);
+	velocity = velocity.rotated(-rotation);
+
+	if is_on_floor():
+		rotation = get_floor_normal().angle() + PI/2;
 		isJumping = false;
+		if Input.is_action_just_pressed("jump"):
+			isJumping = true;
+			velocity.y = jumpForce;
 
 
 
@@ -59,7 +55,7 @@ func animate():
 	else:
 		if !$AnimatedSprite.animation.begins_with("idle"):
 			rNG.randomize();
-			var randomIdle = rNG.randi_range(1, 4);
+			var randomIdle : int = rNG.randi_range(1, 4);
 			if randomIdle == 1:
 				$AnimatedSprite.animation = "idle_matrix";
 			elif randomIdle == 2:
@@ -69,7 +65,7 @@ func animate():
 			elif randomIdle == 4:
 				$AnimatedSprite.animation = "idle_windob";
 
-	if velocity.y < -1:
+	if velocity.y < -1 and is_on_floor():
 		$AnimatedSprite.animation = "jump_ascent";
-	elif velocity.y > 1:
+	elif velocity.y > 1 and is_on_floor():
 		$AnimatedSprite.animation = "jump_descent";
