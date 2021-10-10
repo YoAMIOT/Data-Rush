@@ -151,5 +151,5 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "jump_descent"
+animation = "connected"
 playing = true
