@@ -44,28 +44,31 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump"):
 			isJumping = true;
 			velocity.y = jumpForce;
+	print(is_on_floor());
 
 
 
 ###Function to animate the Animated Sprite by testing what the player is doing###
 func animate():
-	if isWalking == true:
-		if $AnimatedSprite.animation != "walk":
-			$AnimatedSprite.animation = "walk";
-	else:
-		if !$AnimatedSprite.animation.begins_with("idle"):
-			rNG.randomize();
-			var randomIdle : int = rNG.randi_range(1, 4);
-			if randomIdle == 1:
-				$AnimatedSprite.animation = "idle_matrix";
-			elif randomIdle == 2:
-				$AnimatedSprite.animation = "idle_pong";
-			elif randomIdle == 3:
-				$AnimatedSprite.animation = "idle_thinking";
-			elif randomIdle == 4:
-				$AnimatedSprite.animation = "idle_windob";
+	if is_on_floor():
+		if isWalking == true:
+			if $AnimatedSprite.animation != "walk":
+				$AnimatedSprite.animation = "walk";
+		else:
+			if !$AnimatedSprite.animation.begins_with("idle"):
+				rNG.randomize();
+				var randomIdle : int = rNG.randi_range(1, 4);
+				if randomIdle == 1:
+					$AnimatedSprite.animation = "idle_matrix";
+				elif randomIdle == 2:
+					$AnimatedSprite.animation = "idle_pong";
+				elif randomIdle == 3:
+					$AnimatedSprite.animation = "idle_thinking";
+				elif randomIdle == 4:
+					$AnimatedSprite.animation = "idle_windob";
 
-	if velocity.y < -1 and is_on_floor():
-		$AnimatedSprite.animation = "jump_ascent";
-	elif velocity.y > 1 and is_on_floor():
-		$AnimatedSprite.animation = "jump_descent";
+	if !is_on_floor():
+		if velocity.y < -1:
+			$AnimatedSprite.animation = "jump_ascent";
+		elif velocity.y > 1:
+			$AnimatedSprite.animation = "jump_descent";
