@@ -37,14 +37,13 @@ func _physics_process(delta):
 	velocity.y += gravity * delta;
 	velocity = move_and_slide(velocity.rotated(rotation), -transform.y, true, 4, PI/3);
 	velocity = velocity.rotated(-rotation);
+	rotation = get_parent().get_node("Ship").rotation;
 
 	if is_on_floor():
-		rotation = get_floor_normal().angle() + PI/2;
 		isJumping = false;
 		if Input.is_action_just_pressed("jump"):
 			isJumping = true;
 			velocity.y = jumpForce;
-	print(is_on_floor());
 
 
 

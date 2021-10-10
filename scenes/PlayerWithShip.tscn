@@ -5,7 +5,9 @@
 
 [node name="PlayerWithShip" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." groups=[
+"player",
+] instance=ExtResource( 2 )]
 z_index = 1
 
 [node name="Ship" parent="." instance=ExtResource( 1 )]
