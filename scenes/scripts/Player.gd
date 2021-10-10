@@ -39,8 +39,10 @@ func _physics_process(delta):
 	if isConnectedToTheShip:
 		isWalking = false;
 
-	velocity.y += gravity * delta;
-	velocity = move_and_slide(velocity.rotated(rotation), -transform.y, true, 4, PI/3);
+	if !isConnectedToTheShip:
+		velocity.y += gravity * delta;
+		velocity = move_and_slide(velocity.rotated(rotation), -transform.y, true, 4, PI/3);
+
 	velocity = velocity.rotated(-rotation);
 	rotation = get_parent().get_node("Ship").rotation;
 	animate();

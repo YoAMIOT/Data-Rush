@@ -31,10 +31,10 @@ extents = Vector2( 9.86456, 5.48621 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10.4555, 5.04514 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 6.10735, 5.73075 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 10, 7.95026 )
 
 [node name="Ship" type="KinematicBody2D"]
@@ -49,6 +49,7 @@ playing = true
 visible = false
 z_index = 2
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
@@ -57,7 +58,7 @@ polygon = PoolVector2Array( -0.0778542, -64.0492, 13.9317, -62.9001, 25.9525, -5
 [node name="Camera" type="Camera2D" parent="."]
 rotating = true
 current = true
-zoom = Vector2( 0.2, 0.2 )
+zoom = Vector2( 0.15, 0.15 )
 
 [node name="ShipControllerArea" type="Area2D" parent="."]
 
@@ -75,13 +76,16 @@ shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepairControllerArea"]
 position = Vector2( -13.749, 48.1534 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="DataControllerArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DataControllerArea"]
 position = Vector2( 36.0177, 11.9616 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, -54 )
 
 [connection signal="body_entered" from="ShipControllerArea" to="." method="_on_ShipControllerArea_body_entered"]
 [connection signal="body_exited" from="ShipControllerArea" to="." method="_on_ShipControllerArea_body_exited"]
