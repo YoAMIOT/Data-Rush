@@ -31,7 +31,7 @@ extents = Vector2( 9.86456, 5.48621 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10.4555, 5.04514 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 6.10735, 5.73075 )
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -42,7 +42,7 @@ script = ExtResource( 8 )
 
 [node name="Int" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Ext" type="AnimatedSprite" parent="."]
@@ -57,7 +57,6 @@ polygon = PoolVector2Array( -0.0778542, -64.0492, 13.9317, -62.9001, 25.9525, -5
 [node name="Camera" type="Camera2D" parent="."]
 rotating = true
 current = true
-zoom = Vector2( 0.15, 0.15 )
 
 [node name="ShipControllerArea" type="Area2D" parent="."]
 
@@ -75,7 +74,7 @@ shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepairControllerArea"]
 position = Vector2( -13.749, 48.1534 )
-shape = SubResource( 7 )
+shape = SubResource( 5 )
 
 [node name="DataControllerArea" type="Area2D" parent="."]
 
