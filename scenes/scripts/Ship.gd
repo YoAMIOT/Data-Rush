@@ -6,68 +6,95 @@ var playerInBlasterControllerArea : bool = false;
 var playerInRepairControllerArea : bool = false;
 var playerInDataControllerArea : bool = false;
 var velocity : Vector2 = Vector2.ZERO;
-var oldDirection : int = 0;
 var speed : int = 0;
 var maxSpeed : int = 400;
 var minSpeed : int = -400;
 var acceleration : int = 1;
 var friction : int = 2;
 var brakeForce : int = 5;
-var rotationDir : float = 0;
-var rotationSpeed : float = 1.5;
+var rotationSpeed : float = 0;
+var rotationAcceleration : float = 0.01;
+var rotationFriction : float = 0.03;
+var rotationBrake : float = 0.06;
+var maxRotationSpeed: int = 2;
+var minRotationSpeed : int = -2;
 var isMoving : bool = false;
+var isRotating : bool = false;
 
 
 func getInput():
 	velocity = Vector2(0, 0);
-	rotationDir = 0;
 
 	if Input.is_action_pressed("right"):
-		rotationDir += 1;
+		if rotationSpeed < maxRotationSpeed and rotationSpeed >= 0:
+			rotationSpeed += rotationAcceleration;
+		elif rotationSpeed > maxSpeed:
+			rotationSpeed = maxSpeed;
+		elif rotationSpeed < 0:
+			rotationSpeed += rotationBrake;
+		isRotating = true;
 	if Input.is_action_pressed("left"):
-		rotationDir -= 1;
+		if rotationSpeed > minRotationSpeed and rotationSpeed <= 0:
+			rotationSpeed -= rotationAcceleration;
+		elif rotationSpeed < minSpeed:
+			rotationSpeed = minSpeed;
+		elif rotationSpeed > 0:
+			rotationSpeed -= rotationBrake;
+		isRotating = true;
+
+	if Input.is_action_just_released("right") or Input.is_action_just_released("left"):
+		isRotating = false;
 
 	if Input.is_action_pressed("up"):
 		if speed > minSpeed and speed <= 0:
 			speed -= acceleration;
-		elif speed <= minSpeed:
+		elif speed < minSpeed:
 			speed = minSpeed;
 		elif speed > 0:
 			speed -= brakeForce;
 		velocity = Vector2(0, speed).rotated(rotation);
 		isMoving = true;
-		oldDirection = 0;
 	elif Input.is_action_pressed("down"):
 		if speed < maxSpeed and speed >= 0:
 			speed += acceleration;
-		elif speed >= maxSpeed:
+		elif speed > maxSpeed:
 			speed = maxSpeed;
 		elif speed < 0:
 			speed += brakeForce;
 		velocity = Vector2(0, speed).rotated(rotation);
 		isMoving = true;
-		oldDirection = 1;
 
 	if Input.is_action_just_released("up") or Input.is_action_just_released("down"):
 		isMoving = false;
-
-	if speed != 0 and !isMoving:
-		if speed > 0:
-			speed -= friction;
-		if speed < 0:
-			speed += friction;
-		if oldDirection == 0:
-			velocity = Vector2(0, speed).rotated(rotation);
-		elif oldDirection == 1:
-			velocity = Vector2(0, speed).rotated(rotation);
-
 
 
 func _physics_process(delta):
 	if get_parent().get_node("Player").isControllingTheShip:
 		getInput();
-		rotation += rotationDir * rotationSpeed * delta;
+		applyFriction();
+		rotation += rotationSpeed * delta;
 		velocity = move_and_slide(velocity);
+
+
+
+func applyFriction():
+	if speed != 0 and !isMoving:
+		if speed > 0:
+			speed -= friction;
+		elif speed < 0:
+			speed += friction;
+		if speed > -3 and speed < 3:
+			speed = 0;
+		velocity = Vector2(0, speed).rotated(rotation);
+
+	if rotationSpeed != 0 and !isRotating:
+		if rotationSpeed > 0:
+			rotationSpeed -= rotationFriction;
+		elif rotationSpeed < 0:
+			rotationSpeed += rotationFriction;
+		if rotationSpeed > -0.04 and rotationSpeed < 0.04:
+			rotationSpeed = 0;
+	print(rotationSpeed);
 
 
 
