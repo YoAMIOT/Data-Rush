@@ -10,6 +10,7 @@ var isWalking : bool = false;
 var isJumping : bool = true;
 var isConnectedToTheShip : bool = false;
 var isControllingTheShip : bool = false;
+var isControllingTurret : bool = false;
 
 
 

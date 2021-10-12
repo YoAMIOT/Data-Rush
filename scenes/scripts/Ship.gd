@@ -68,12 +68,19 @@ func getInput():
 		isMoving = false;
 
 
+
 func _physics_process(delta):
 	if get_parent().get_node("Player").isControllingTheShip:
 		getInput();
 		applyFriction();
 		rotation += rotationSpeed * delta;
 		velocity = move_and_slide(velocity);
+	else: 
+		speed = 0;
+		rotationSpeed = 0;
+	if get_parent().get_node("Player").isControllingTurret:
+		$Turret.look_at(get_global_mouse_position());
+		$Turret.rotation_degrees += 90;
 
 
 
@@ -94,7 +101,6 @@ func applyFriction():
 			rotationSpeed += rotationFriction;
 		if rotationSpeed > -0.04 and rotationSpeed < 0.04:
 			rotationSpeed = 0;
-	print(rotationSpeed);
 
 
 
