@@ -6,9 +6,14 @@ var playerInBlasterControllerArea : bool = false;
 var playerInRepairControllerArea : bool = false;
 var playerInDataControllerArea : bool = false;
 var velocity : Vector2 = Vector2.ZERO;
-var speed : int = 400;
+var oldDirection : int = 0;
+var speed : int = 0;
+var maxSpeed : int = 400;
+var acceleration : int = 1;
+var friction : int = 2;
 var rotationDir : float = 0;
 var rotationSpeed : float = 1.5;
+var isMoving : bool = false;
 
 
 func getInput():
@@ -21,9 +26,33 @@ func getInput():
 		rotationDir -= 1;
 
 	if Input.is_action_pressed("up"):
+		if speed < maxSpeed:
+			speed += acceleration;
+		elif speed >= maxSpeed:
+			speed = maxSpeed;
 		velocity = Vector2(0, -speed).rotated(rotation);
-	if Input.is_action_pressed("down"):
+		isMoving = true;
+		oldDirection = 0;
+	elif Input.is_action_pressed("down"):
+		if speed < maxSpeed:
+			speed += acceleration;
+		elif speed >= maxSpeed:
+			speed = maxSpeed;
 		velocity = Vector2(0, speed).rotated(rotation);
+		isMoving = true;
+		oldDirection = 1;
+
+	if Input.is_action_just_released("up") or Input.is_action_just_released("down"):
+		isMoving = false;
+
+	if speed > 0 and !isMoving:
+		speed -= friction;
+		if speed <= 0:
+			speed = 0;
+		if oldDirection == 0:
+			velocity = Vector2(0, -speed).rotated(rotation);
+		elif oldDirection == 1:
+			velocity = Vector2(0, speed).rotated(rotation);
 
 
 
