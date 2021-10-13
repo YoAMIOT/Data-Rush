@@ -14,6 +14,12 @@ var isControllingTurret : bool = false;
 
 
 
+###Ready function###
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
+
+
+
 ###Function to get the input of the player###
 func getInput():
 	velocity.x = 0

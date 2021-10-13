@@ -9,19 +9,22 @@ var velocity : Vector2 = Vector2.ZERO;
 var speed : int = 0;
 var maxSpeed : int = 400;
 var minSpeed : int = -400;
-var acceleration : int = 1;
-var friction : int = 2;
-var brakeForce : int = 5;
+var acceleration : int = 5;
+var friction : int = 5;
+var brakeForce : int = 9;
 var rotationSpeed : float = 0;
-var rotationAcceleration : float = 0.01;
-var rotationFriction : float = 0.03;
-var rotationBrake : float = 0.06;
-var maxRotationSpeed: int = 2;
-var minRotationSpeed : int = -2;
+var rotationAcceleration : float = 0.05;
+var rotationFriction : float = 0.05;
+var rotationBrake : float = 0.09;
+var maxRotationSpeed: int = 3;
+var minRotationSpeed : int = -3;
+var turretRotationSpeed : int = 3;
 var isMoving : bool = false;
 var isRotating : bool = false;
 
 
+
+###Function to get the inputs###
 func getInput():
 	velocity = Vector2(0, 0);
 
@@ -69,6 +72,7 @@ func getInput():
 
 
 
+###Process Function###
 func _physics_process(delta):
 	if get_parent().get_node("Player").isControllingTheShip:
 		getInput();
@@ -78,12 +82,26 @@ func _physics_process(delta):
 	else: 
 		speed = 0;
 		rotationSpeed = 0;
+
 	if get_parent().get_node("Player").isControllingTurret:
-		$Turret.look_at(get_global_mouse_position());
+		turretControl();
+
+
+
+###Function to apply the rotation to the turret###
+func turretControl():
+	var mousePosition : Vector2 = get_global_mouse_position();
+	if $Turret.get_angle_to(mousePosition) + deg2rad(90) > 0:
+		$Turret.rotation_degrees += turretRotationSpeed;
+	elif $Turret.get_angle_to(mousePosition) + deg2rad(90) < 0:
+		$Turret.rotation_degrees -= turretRotationSpeed;
+	if $Turret.get_angle_to(mousePosition) + deg2rad(90) > deg2rad(-5) and $Turret.get_angle_to(mousePosition) + deg2rad(90) < deg2rad(5):
+		$Turret.look_at(mousePosition);
 		$Turret.rotation_degrees += 90;
 
 
 
+###Function to apply friction###
 func applyFriction():
 	if speed != 0 and !isMoving:
 		if speed > 0:
@@ -108,37 +126,30 @@ func applyFriction():
 func _on_ShipControllerArea_body_entered(body):
 	if body.is_in_group("player"):
 		playerInShipControllerArea = true;
-
 ###Function to detect when a player gets off the Ship Controller area###
 func _on_ShipControllerArea_body_exited(body):
 	if body.is_in_group("player"):
 		playerInShipControllerArea = false;
-
 ###Function to detect when a player gets in the Blaster Controller area###
 func _on_BlasterControllerArea_body_entered(body):
 	if body.is_in_group("player"):
 		playerInBlasterControllerArea = true;
-
 ###Function to detect when a player gets off the Blaster Controller area###
 func _on_BlasterControllerArea_body_exited(body):
 	if body.is_in_group("player"):
 		playerInBlasterControllerArea = false;
-
 ###Function to detect when a player gets in the Repair Controller area###
 func _on_RepairControllerArea_body_entered(body):
 	if body.is_in_group("player"):
 		playerInRepairControllerArea = true;
-		
 ###Function to detect when a player gets off the Repair Controller area###
 func _on_RepairControllerArea_body_exited(body):
 	if body.is_in_group("player"):
 		playerInRepairControllerArea = false;
-		
 ###Function to detect when a player gets in the Data Controller area###
 func _on_DataControllerArea_body_entered(body):
 	if body.is_in_group("player"):
 		playerInDataControllerArea = true;
-		
 ###Function to detect when a player gets off the Data Controller area###
 func _on_DataControllerArea_body_exited(body):
 	if body.is_in_group("player"):

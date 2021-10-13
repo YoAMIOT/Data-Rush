@@ -21,6 +21,7 @@ func _physics_process(delta):
 				get_node("Ship/Camera").zoom = Vector2(0.6, 0.6);
 				get_node("Ship/Ext").visible = true;
 				get_node("Ship/Turret").visible = true;
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
 
 			elif get_node("Ship").playerInRepairControllerArea == true:
 				get_node("Player").isConnectedToTheShip = true;
@@ -33,6 +34,7 @@ func _physics_process(delta):
 
 
 
+###Function when the player exit control desk###
 func exitShipControl():
 	get_node("Player").isConnectedToTheShip = false;
 	get_node("Ship/Camera").zoom = Vector2(0.15, 0.15);
@@ -46,3 +48,4 @@ func exitShipControl():
 		get_node("Ship/Turret").visible = false;
 	if get_node("Player").isControllingTurret == true:
 		get_node("Player").isControllingTurret = false;
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
