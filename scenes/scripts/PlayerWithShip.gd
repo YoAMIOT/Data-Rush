@@ -23,7 +23,7 @@ func _physics_process(delta):
 				get_node("Ship/Ext").visible = true;
 				get_node("Ship/Turret").visible = true;
 				get_node("Ship/Porthole").visible = true;
-				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
+				get_node("Crosshair").visible = true;
 
 			elif get_node("Ship").playerInRepairControllerArea == true:
 				get_node("Player").isConnectedToTheShip = true;
@@ -51,4 +51,4 @@ func exitShipControl():
 		get_node("Ship/Porthole").visible = false;
 	if get_node("Player").isControllingTurret == true:
 		get_node("Player").isControllingTurret = false;
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
+		get_node("Crosshair").visible = false;
