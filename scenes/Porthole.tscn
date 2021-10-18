@@ -1,0 +1,133 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole.png" type="Texture" id=1]
+[ext_resource path="res://ressources/Ship_anim/ship_compass/compass_null.png" type="Texture" id=2]
+[ext_resource path="res://ressources/Ship_anim/ship_compass/compass.png" type="Texture" id=3]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed1.png" type="Texture" id=4]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed7.png" type="Texture" id=5]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed6.png" type="Texture" id=6]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed2.png" type="Texture" id=7]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed4.png" type="Texture" id=8]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed5.png" type="Texture" id=9]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed3.png" type="Texture" id=10]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed14.png" type="Texture" id=11]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed8.png" type="Texture" id=12]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed9.png" type="Texture" id=13]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed16.png" type="Texture" id=14]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed11.png" type="Texture" id=15]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed13.png" type="Texture" id=16]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed12.png" type="Texture" id=17]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed15.png" type="Texture" id=18]
+[ext_resource path="res://ressources/Ship_anim/ship_porthole/Porthole_speed10.png" type="Texture" id=19]
+[ext_resource path="res://scenes/scripts/Porthole.gd" type="Script" id=20]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "225",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "375",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "125",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "100",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "150",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "325",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "250",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "25",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "50",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "200",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "300",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "175",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "75",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "275",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "350",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "400",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "compass",
+"speed": 5.0
+} ]
+
+[node name="Porthole" type="AnimatedSprite"]
+z_index = 10
+frames = SubResource( 1 )
+playing = true
+script = ExtResource( 20 )
+
+[node name="Compass" type="AnimatedSprite" parent="."]
+position = Vector2( 847, 427 )
+frames = SubResource( 2 )

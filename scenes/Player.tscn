@@ -107,16 +107,6 @@ animations = [ {
 "name": "connected",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 212 ), ExtResource( 213 ), ExtResource( 201 ), ExtResource( 232 ), ExtResource( 239 ), ExtResource( 200 ), ExtResource( 203 ), ExtResource( 243 ), ExtResource( 247 ), ExtResource( 244 ), ExtResource( 242 ), ExtResource( 245 ), ExtResource( 246 ), ExtResource( 248 ), ExtResource( 259 ), ExtResource( 249 ), ExtResource( 250 ), ExtResource( 251 ), ExtResource( 253 ), ExtResource( 260 ), ExtResource( 256 ), ExtResource( 254 ), ExtResource( 252 ), ExtResource( 258 ), ExtResource( 255 ), ExtResource( 257 ), ExtResource( 259 ) ],
-"loop": true,
-"name": "idle_pong",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 196 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ) ],
-"loop": true,
-"name": "walk",
-"speed": 6.5
-}, {
 "frames": [ ExtResource( 25 ) ],
 "loop": true,
 "name": "jump_ascent",
@@ -131,6 +121,16 @@ animations = [ {
 "loop": true,
 "name": "idle_windob",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 212 ), ExtResource( 213 ), ExtResource( 201 ), ExtResource( 232 ), ExtResource( 239 ), ExtResource( 200 ), ExtResource( 203 ), ExtResource( 243 ), ExtResource( 247 ), ExtResource( 244 ), ExtResource( 242 ), ExtResource( 245 ), ExtResource( 246 ), ExtResource( 248 ), ExtResource( 259 ), ExtResource( 249 ), ExtResource( 250 ), ExtResource( 251 ), ExtResource( 253 ), ExtResource( 260 ), ExtResource( 256 ), ExtResource( 254 ), ExtResource( 252 ), ExtResource( 258 ), ExtResource( 255 ), ExtResource( 257 ), ExtResource( 259 ) ],
+"loop": true,
+"name": "idle_pong",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 196 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ) ],
+"loop": true,
+"name": "walk",
+"speed": 6.5
 }, {
 "frames": [ ExtResource( 220 ), ExtResource( 208 ), ExtResource( 221 ), ExtResource( 214 ), ExtResource( 215 ), ExtResource( 237 ), ExtResource( 205 ), ExtResource( 222 ), ExtResource( 233 ), ExtResource( 234 ), ExtResource( 218 ), ExtResource( 216 ), ExtResource( 226 ), ExtResource( 217 ), ExtResource( 227 ), ExtResource( 210 ), ExtResource( 207 ), ExtResource( 204 ), ExtResource( 229 ), ExtResource( 224 ) ],
 "loop": true,
@@ -152,4 +152,5 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "connected"
+frame = 1
 playing = true
