@@ -52,12 +52,14 @@ script = ExtResource( 8 )
 
 [node name="Int" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 2
 playing = true
 
 [node name="Ext" type="AnimatedSprite" parent="."]
 visible = false
 z_index = 2
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Turret" type="AnimatedSprite" parent="."]

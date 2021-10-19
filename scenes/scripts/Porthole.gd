@@ -1,18 +1,41 @@
 extends AnimatedSprite
 
 var speedometer : float = 0;
+var accelerometer : float = 0;
 
 ###Process Function###
 func _physics_process(delta):
 	speedometer = get_parent().speed;
+	accelerometer = get_parent().rotationSpeed;
 	if speedometer < 0:
 		speedometer = speedometer * -1;
-	animate();
+	animateSpeedometer();
+	animateAccelerometer();
+
+
+
+###Func to animate the accelerometer###
+func animateAccelerometer():
+	if accelerometer < 4 and accelerometer > 2:
+		$Accelerometer.animation = "R3";
+	elif accelerometer <= 2 and accelerometer > 1:
+		$Accelerometer.animation = "R2";
+	elif accelerometer <= 1 and accelerometer > 0:
+		$Accelerometer.animation = "R1";
+	elif accelerometer > -4 and accelerometer < -2:
+		$Accelerometer.animation = "L3";
+	elif accelerometer >= -2 and accelerometer < -1:
+		$Accelerometer.animation = "L2";
+	elif accelerometer >= -1 and accelerometer < 0:
+		$Accelerometer.animation = "L1";
+	else:
+		$Accelerometer.animation = "default";
+	print(accelerometer)
 
 
 
 ###Func to animate the speedometer###
-func animate():
+func animateSpeedometer():
 	if speedometer <= 400 and speedometer >= 395:
 		$".".animation = "400";
 	elif speedometer < 395 and speedometer >= 375:
