@@ -8,8 +8,9 @@
 [ext_resource path="res://ressources/Ship_anim/ship_body_ext/ship_body_ext2.png" type="Texture" id=6]
 [ext_resource path="res://ressources/Ship_anim/ship_body_int/ship_int4.png" type="Texture" id=7]
 [ext_resource path="res://scenes/scripts/Ship.gd" type="Script" id=8]
-[ext_resource path="res://ressources/Ship_anim/ship_turret/ship_turret.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Turret.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Porthole.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Projectile.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -27,45 +28,36 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 9.86456, 5.48621 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10.4555, 5.04514 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 6.10735, 5.73075 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 10, 7.95026 )
 
 [node name="Ship" type="KinematicBody2D"]
 script = ExtResource( 8 )
+Projectile = ExtResource( 11 )
 
 [node name="Int" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Ext" type="AnimatedSprite" parent="."]
 visible = false
 z_index = 2
 frames = SubResource( 2 )
-frame = 1
+frame = 2
 playing = true
 
-[node name="Turret" type="AnimatedSprite" parent="."]
-visible = false
-z_index = 2
-frames = SubResource( 3 )
+[node name="Turret" parent="." instance=ExtResource( 9 )]
+rotation = 1.5708
 
 [node name="Porthole" parent="." instance=ExtResource( 10 )]
 visible = false
@@ -82,28 +74,32 @@ zoom = Vector2( 0.12, 0.12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipControllerArea"]
 position = Vector2( -1.96054, -55.4996 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="BlasterControllerArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlasterControllerArea"]
 position = Vector2( -0.078743, 0.866196 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="RepairControllerArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepairControllerArea"]
 position = Vector2( -13.749, 48.1534 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="DataControllerArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DataControllerArea"]
 position = Vector2( 36.0177, 11.9616 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 0, -54 )
+
+[node name="ShootingCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="body_entered" from="ShipControllerArea" to="." method="_on_ShipControllerArea_body_entered"]
 [connection signal="body_exited" from="ShipControllerArea" to="." method="_on_ShipControllerArea_body_exited"]
@@ -113,3 +109,4 @@ position = Vector2( 0, -54 )
 [connection signal="body_exited" from="RepairControllerArea" to="." method="_on_RepairControllerArea_body_exited"]
 [connection signal="body_entered" from="DataControllerArea" to="." method="_on_DataControllerArea_body_entered"]
 [connection signal="body_exited" from="DataControllerArea" to="." method="_on_DataControllerArea_body_exited"]
+[connection signal="timeout" from="ShootingCooldown" to="." method="_on_ShootingCooldown_timeout"]

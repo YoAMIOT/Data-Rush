@@ -30,7 +30,6 @@ func animateAccelerometer():
 		$Accelerometer.animation = "L1";
 	else:
 		$Accelerometer.animation = "default";
-	print(accelerometer)
 
 
 

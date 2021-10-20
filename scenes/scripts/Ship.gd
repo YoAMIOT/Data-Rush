@@ -21,6 +21,9 @@ var minRotationSpeed : int = -3;
 var turretRotationSpeed : int = 3;
 var isMoving : bool = false;
 var isRotating : bool = false;
+var canShoot : bool = true;
+var rightCannon : bool = true;
+export (PackedScene) var Projectile : PackedScene;
 
 
 
@@ -99,6 +102,22 @@ func turretControl():
 		$Turret.look_at(mousePosition);
 		$Turret.rotation_degrees += 90;
 
+	if Input.is_action_just_pressed("shoot") and canShoot:
+		canShoot = false;
+		get_node("ShootingCooldown").start();
+		
+		if rightCannon == true:
+			rightCannon = false;
+			var RProjectile = Projectile.instance();
+			owner.add_child(RProjectile);
+			RProjectile.transform = get_node("Turret/RCannon").global_transform;
+
+		elif rightCannon == false:
+			rightCannon = true;
+			var LProjectile = Projectile.instance();
+			owner.add_child(LProjectile);
+			LProjectile.transform = get_node("Turret/LCannon").global_transform;
+
 
 
 ###Function to apply friction###
@@ -154,3 +173,9 @@ func _on_DataControllerArea_body_entered(body):
 func _on_DataControllerArea_body_exited(body):
 	if body.is_in_group("player"):
 		playerInDataControllerArea = false;
+
+
+
+###Functiont to call when the Shooting Cooldown Timer is done###
+func _on_ShootingCooldown_timeout():
+	canShoot = true;
