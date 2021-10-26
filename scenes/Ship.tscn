@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://ressources/Ship_anim/ship_body_ext/ship_body_ext3.png" type="Texture" id=1]
 [ext_resource path="res://ressources/Ship_anim/ship_body_int/ship_int1.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/Turret.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Porthole.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Projectile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/RepairUI.tscn" type="PackedScene" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -40,20 +41,23 @@ extents = Vector2( 6.10735, 5.73075 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 10, 7.95026 )
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 28.6758, 1.22137 )
+
 [node name="Ship" type="KinematicBody2D"]
 script = ExtResource( 8 )
 Projectile = ExtResource( 11 )
 
 [node name="Int" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Ext" type="AnimatedSprite" parent="."]
 visible = false
 z_index = 2
 frames = SubResource( 2 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Turret" parent="." instance=ExtResource( 9 )]
@@ -62,7 +66,11 @@ rotation = 1.5708
 [node name="Porthole" parent="." instance=ExtResource( 10 )]
 visible = false
 
+[node name="RepairUI" parent="." instance=ExtResource( 12 )]
+scale = Vector2( 0.22, 0.22 )
+
 [node name="Collision" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PoolVector2Array( -0.0778542, -64.0492, 13.9317, -62.9001, 25.9525, -58.9669, 34.8355, -53.9287, 40.6944, -49.8158, 49.8682, -40.6984, 54.8288, -33.9519, 60.75, -20.625, 62.9375, -13, 63.9125, -7.56013, 64.0238, 7.80787, 60.7334, 22.7873, 58.0822, 59.4719, 55.8995, 61.6546, 51.7326, 62.8451, -51.8692, 62.9789, -55.9283, 62.1479, -57.9125, 59.5683, -60.7897, 22.7605, -63.882, 7.68463, -63.7579, -7.81252, -60.7191, -20.8566, -54.8791, -33.8713, -46.7033, -43.8826, -40.613, -49.9728, -33.9389, -54.895, -23.6773, -59.9841, -13.5825, -62.8206, -7.98409, -63.555, -8.01537, -62.022, -11.8776, -59.8464, -11.9849, -49.9842, 3.94814, -49.9639, 4.25873, -48.5924, -37.9506, -46.9605, -40.9763, -44.9341, -40.9731, -40.0378, -44.9271, -39.9788, -45.0156, -30.953, -18.9814, -31.0077, -18.875, -30.0703, -19.0698, -23.0328, 18.7354, -22.9876, 19.0133, -21.9677, 19, -17.9844, 20.0253, -17.9886, 20.0274, -13.9663, 18.995, -13.9663, 19.002, -12.99, 9.12456, -12.9679, 6.0882, -7.15303, 6.04617, -4.08755, -5.92308, -4.08755, -6.07013, -7.95547, -33.4769, -7.90863, -36.3164, -11.3617, -58.8125, -11.1875, -58.8867, 13.0412, -50.9737, 13.0412, -50.9742, 20.0597, -19.9707, 20.0085, -19.7276, 22.98, -25.9844, 30.0156, -27.7813, 30.0156, -27.9375, 44.0938, -20, 44.0938, -20.125, 54, -6.85938, 54, -8.15422, 32.9178, -7.97744, 32.0118, 8.02045, 32.0323, 8.20189, 32.8662, 6.98577, 53.9807, 20.0987, 54, 20.099, 44.0322, 28.108, 44.0322, 28.0313, 29.9688, 25.9389, 29.933, 19.7751, 22.9909, 20.0324, 20.027, 45.9789, 20.0684, 45.9789, 3.84535, 25.9153, 4.044, 25.9815, 7.68591, -39.018, 7.63401, -39.0024, 5.99813, 20.04, 6.00794, 20.0099, -1.98226, 28.9904, -1.98359, 28.9922, -6, 31.0078, -6.00781, 31, -8, 32.0156, -8.01563, 32.0156, -12, 37, -11.9844, 37.0313, -13, 43.9214, -12.9973, 46.7856, -12.9945, 46.6512, -32.996, 41.9597, -35.0452, -6.71094, -37, -6.39844, -37.9844, 31.0156, -38, 30.8882, -51.4144, 27.5474, -54.6439, 13.7384, -58.9871, 7.91679, -62.8904, -7.99452, -62.9918, -7.97366, -63.555 )
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -71,24 +79,28 @@ current = true
 zoom = Vector2( 0.12, 0.12 )
 
 [node name="ShipControllerArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipControllerArea"]
 position = Vector2( -1.96054, -55.4996 )
 shape = SubResource( 3 )
 
 [node name="BlasterControllerArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlasterControllerArea"]
 position = Vector2( -0.078743, 0.866196 )
 shape = SubResource( 4 )
 
 [node name="RepairControllerArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepairControllerArea"]
 position = Vector2( -13.749, 48.1534 )
 shape = SubResource( 5 )
 
 [node name="DataControllerArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DataControllerArea"]
 position = Vector2( 36.0177, 11.9616 )
@@ -101,6 +113,47 @@ position = Vector2( 0, -54 )
 wait_time = 0.5
 one_shot = true
 
+[node name="ReloadCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="RThrusterCollision" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RThrusterCollision"]
+polygon = PoolVector2Array( 51.9967, 63.1838, 28.7344, 63.2891, 28.8281, 59.6953, 54.0938, 58.8438, 56.3295, 22.2433, 61.0854, 22.7606, 58.6248, 59.6714, 56.1032, 62.1537 )
+
+[node name="LThrusterCollision" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LThrusterCollision"]
+polygon = PoolVector2Array( -61.2577, 22.5609, -58.4323, 59.7426, -56.3168, 62.542, -51.7444, 63.3829, -28.7079, 63.362, -28.8125, 60.375, -53.5326, 59.9996, -56.1547, 22.1673 )
+
+[node name="EngineCollision" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EngineCollision"]
+position = Vector2( 0, 62.0667 )
+shape = SubResource( 7 )
+
+[node name="BodyCollision" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BodyCollision"]
+polygon = PoolVector2Array( 32.0938, -55.9063, 35.0366, -54.2861, 41.0206, -50.0432, 50.1808, -40.888, 55.3194, -34.0499, 61.1946, -20.8519, 63.4241, -13.1067, 64.3621, -7.70789, 64.3536, 7.93306, 61.0938, 22.7109, 56.3369, 22.1968, -56.1797, 22.0333, -61.227, 22.4921, -64.3745, 7.91229, -64.3127, 0.140678, -52.2855, -0.310291, -44.9558, -28.7353, -55.1499, -33.8612, -46.9885, -43.9259, -40.7373, -50.2221, -33.9455, -55.0797, -32.1641, -55.9688, -31.5781, -54.8047, 31.4593, -54.6742 )
+
+[node name="CockpitCollision" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CockpitCollision"]
+polygon = PoolVector2Array( -0.0331078, -64.3845, 14.1205, -63.2318, 26.1768, -59.2192, 32.076, -55.9452, 31.4777, -54.8021, 23.516, -58.0699, 7.21415, -62.3716, -7.74741, -62.3322, -22.8776, -59.0011, -31.5671, -54.8447, -32.1246, -55.9959, -23.9844, -60.1094, -13.6202, -63.1103 )
+
+[node name="TurretCollision" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TurretCollision"]
+polygon = PoolVector2Array( -55.1641, -33.8125, -60.9598, -21.1571, -64.2593, -7.87151, -64.2952, 0.100321, -52.3276, -0.363014, -45.0262, -28.7199 )
+
 [connection signal="body_entered" from="ShipControllerArea" to="." method="_on_ShipControllerArea_body_entered"]
 [connection signal="body_exited" from="ShipControllerArea" to="." method="_on_ShipControllerArea_body_exited"]
 [connection signal="body_entered" from="BlasterControllerArea" to="." method="_on_BlasterControllerArea_body_entered"]
@@ -110,3 +163,10 @@ one_shot = true
 [connection signal="body_entered" from="DataControllerArea" to="." method="_on_DataControllerArea_body_entered"]
 [connection signal="body_exited" from="DataControllerArea" to="." method="_on_DataControllerArea_body_exited"]
 [connection signal="timeout" from="ShootingCooldown" to="." method="_on_ShootingCooldown_timeout"]
+[connection signal="timeout" from="ReloadCooldown" to="." method="_on_ReloadCooldown_timeout"]
+[connection signal="area_entered" from="RThrusterCollision" to="." method="_on_RThrusterCollision_area_entered"]
+[connection signal="area_entered" from="LThrusterCollision" to="." method="_on_LThrusterCollision_area_entered"]
+[connection signal="area_entered" from="EngineCollision" to="." method="_on_EngineCollision_area_entered"]
+[connection signal="area_entered" from="BodyCollision" to="." method="_on_BodyCollision_area_entered"]
+[connection signal="area_entered" from="CockpitCollision" to="." method="_on_CockpitCollision_area_entered"]
+[connection signal="area_entered" from="TurretCollision" to="." method="_on_TurretCollision_area_entered"]

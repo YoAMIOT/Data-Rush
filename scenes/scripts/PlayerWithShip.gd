@@ -6,7 +6,7 @@ func _physics_process(delta):
 		if get_node("Player").isConnectedToTheShip == true:
 			exitShipControl();
 		elif get_node("Player").isConnectedToTheShip == false:
-			if get_node("Ship").playerInShipControllerArea == true:
+			if get_node("Ship").playerInShipControllerArea == true and get_node("Ship").cockpitBreakdown == false:
 				get_node("Ship/Camera").zoom = Vector2(1, 1);
 				get_node("Ship/Ext").visible = true;
 				get_node("Ship/Turret").visible = true;
@@ -16,7 +16,7 @@ func _physics_process(delta):
 				get_node("Player").isControllingTheShip = true;
 				get_node("Ship/Porthole").visible = true;
 
-			elif get_node("Ship").playerInBlasterControllerArea == true:
+			elif get_node("Ship").playerInBlasterControllerArea == true and get_node("Ship").turretBreakdown == false:
 				get_node("Player").isConnectedToTheShip = true;
 				get_node("Player").isControllingTurret = true;
 				get_node("Ship/Camera").zoom = Vector2(1, 1);
@@ -27,6 +27,7 @@ func _physics_process(delta):
 
 			elif get_node("Ship").playerInRepairControllerArea == true:
 				get_node("Player").isConnectedToTheShip = true;
+				get_node("Ship/RepairUI").visible = true;
 
 			elif get_node("Ship").playerInDataControllerArea == true:
 				get_node("Player").isConnectedToTheShip = true;
@@ -43,7 +44,7 @@ func exitShipControl():
 	if get_node("Player").isControllingTheShip == true:
 		get_node("Player").isControllingTheShip = false;
 		get_node("Player/AnimatedSprite").visible = true;
-		get_node("Player/CollisionShape2D").disabled = false;
+		get_node("Player/CollisionShape2D").set_deferred("disabled", false);
 		get_node("Player").global_position = get_node("Ship/Position2D").global_position; 
 	if get_node("Ship/Ext").visible == true:
 		get_node("Ship/Ext").visible = false;
@@ -52,3 +53,5 @@ func exitShipControl():
 	if get_node("Player").isControllingTurret == true:
 		get_node("Player").isControllingTurret = false;
 		get_node("Crosshair").visible = false;
+	if get_node("Ship/RepairUI").visible == true:
+		get_node("Ship/RepairUI").visible = false;
