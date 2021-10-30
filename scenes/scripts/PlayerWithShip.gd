@@ -23,11 +23,12 @@ func _physics_process(delta):
 				get_node("Ship/Ext").visible = true;
 				get_node("Ship/Turret").visible = true;
 				get_node("Ship/Porthole").visible = true;
-				get_node("Crosshair").visible = true;
+				get_node("Crosshair").setVisible("turret");
 
 			elif get_node("Ship").playerInRepairControllerArea == true:
 				get_node("Player").isConnectedToTheShip = true;
 				get_node("Ship/RepairUI").visible = true;
+				get_node("Crosshair").setVisible("repair");
 
 			elif get_node("Ship").playerInDataControllerArea == true:
 				get_node("Player").isConnectedToTheShip = true;
@@ -55,3 +56,4 @@ func exitShipControl():
 		get_node("Crosshair").visible = false;
 	if get_node("Ship/RepairUI").visible == true:
 		get_node("Ship/RepairUI").visible = false;
+		get_node("Crosshair").visible = false;

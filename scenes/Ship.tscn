@@ -44,7 +44,9 @@ extents = Vector2( 10, 7.95026 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 28.6758, 1.22137 )
 
-[node name="Ship" type="KinematicBody2D"]
+[node name="Ship" type="KinematicBody2D" groups=[
+"playerShip",
+]]
 script = ExtResource( 8 )
 Projectile = ExtResource( 11 )
 
@@ -57,7 +59,7 @@ playing = true
 visible = false
 z_index = 2
 frames = SubResource( 2 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Turret" parent="." instance=ExtResource( 9 )]
@@ -109,46 +111,66 @@ shape = SubResource( 6 )
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 0, -54 )
 
+[node name="LeftTracker" type="Position2D" parent="Position2D"]
+position = Vector2( -49, 119 )
+
+[node name="MidTracker" type="Position2D" parent="Position2D"]
+position = Vector2( 0, 119 )
+
+[node name="RightTracker" type="Position2D" parent="Position2D"]
+position = Vector2( 49, 119 )
+
 [node name="ShootingCooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
 [node name="ReloadCooldown" type="Timer" parent="."]
-wait_time = 1.5
 one_shot = true
 
-[node name="RThrusterCollision" type="Area2D" parent="."]
+[node name="RThrusterCollision" type="Area2D" parent="." groups=[
+"playerShip",
+]]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RThrusterCollision"]
 polygon = PoolVector2Array( 51.9967, 63.1838, 28.7344, 63.2891, 28.8281, 59.6953, 54.0938, 58.8438, 56.3295, 22.2433, 61.0854, 22.7606, 58.6248, 59.6714, 56.1032, 62.1537 )
 
-[node name="LThrusterCollision" type="Area2D" parent="."]
+[node name="LThrusterCollision" type="Area2D" parent="." groups=[
+"playerShip",
+]]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LThrusterCollision"]
 polygon = PoolVector2Array( -61.2577, 22.5609, -58.4323, 59.7426, -56.3168, 62.542, -51.7444, 63.3829, -28.7079, 63.362, -28.8125, 60.375, -53.5326, 59.9996, -56.1547, 22.1673 )
 
-[node name="EngineCollision" type="Area2D" parent="."]
+[node name="EngineCollision" type="Area2D" parent="." groups=[
+"playerShip",
+]]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EngineCollision"]
 position = Vector2( 0, 62.0667 )
 shape = SubResource( 7 )
 
-[node name="BodyCollision" type="Area2D" parent="."]
+[node name="BodyCollision" type="Area2D" parent="." groups=[
+"playerShip",
+]]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BodyCollision"]
 polygon = PoolVector2Array( 32.0938, -55.9063, 35.0366, -54.2861, 41.0206, -50.0432, 50.1808, -40.888, 55.3194, -34.0499, 61.1946, -20.8519, 63.4241, -13.1067, 64.3621, -7.70789, 64.3536, 7.93306, 61.0938, 22.7109, 56.3369, 22.1968, -56.1797, 22.0333, -61.227, 22.4921, -64.3745, 7.91229, -64.3127, 0.140678, -52.2855, -0.310291, -44.9558, -28.7353, -55.1499, -33.8612, -46.9885, -43.9259, -40.7373, -50.2221, -33.9455, -55.0797, -32.1641, -55.9688, -31.5781, -54.8047, 31.4593, -54.6742 )
 
-[node name="CockpitCollision" type="Area2D" parent="."]
+[node name="CockpitCollision" type="Area2D" parent="." groups=[
+"playerShip",
+]]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CockpitCollision"]
 polygon = PoolVector2Array( -0.0331078, -64.3845, 14.1205, -63.2318, 26.1768, -59.2192, 32.076, -55.9452, 31.4777, -54.8021, 23.516, -58.0699, 7.21415, -62.3716, -7.74741, -62.3322, -22.8776, -59.0011, -31.5671, -54.8447, -32.1246, -55.9959, -23.9844, -60.1094, -13.6202, -63.1103 )
 
-[node name="TurretCollision" type="Area2D" parent="."]
+[node name="TurretCollision" type="Area2D" parent="." groups=[
+"playerShip",
+]]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TurretCollision"]

@@ -1,13 +1,13 @@
 extends Area2D
 
 ###Constants###
-const SPEED : int = 600;
+var speed : int = 600;
 
 
 
 ###Process Fonction###
 func _physics_process(delta):
-	position += transform.x * SPEED * delta;
+	position += transform.x * speed * delta;
 
 
 
@@ -15,6 +15,7 @@ func _physics_process(delta):
 func _on_Projectile_area_entered(area):
 	if area.is_in_group("damageableByPlayer"):
 		$AnimatedSprite.animation = "destroy";
+		speed = 0;
 
 
 

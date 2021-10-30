@@ -39,94 +39,107 @@ var ammo : int = 4;
 var isReloading : bool = false;
 
 
+###Ready Function###
+func _ready():
+	$Turret.rotation_degrees = 0;
 
 ###Function to get the inputs###
 func getInput():
 	velocity = Vector2(0, 0);
 
 	if engineBreakdown:
-		speed = 0;
-		rotationSpeed = 0;
-
-	if Input.is_action_pressed("right") and engineBreakdown == false:
-		if RThrusterBreakdown == false and LThrusterBreakdown == false:
-			if rotationSpeed < maxRotationSpeed and rotationSpeed >= 0:
-				rotationSpeed += rotationAcceleration;
-			elif rotationSpeed > maxSpeed:
-				rotationSpeed = maxSpeed;
-			elif rotationSpeed < 0:
-				rotationSpeed += rotationBrake;
-			isRotating = true;
-	if Input.is_action_pressed("left") and engineBreakdown == false:
-		if RThrusterBreakdown == false and LThrusterBreakdown == false:
-			if rotationSpeed > minRotationSpeed and rotationSpeed <= 0:
-				rotationSpeed -= rotationAcceleration;
-			elif rotationSpeed < minSpeed:
-				rotationSpeed = minSpeed;
-			elif rotationSpeed > 0:
-				rotationSpeed -= rotationBrake;
-			isRotating = true;
-
-	if Input.is_action_just_released("right") or Input.is_action_just_released("left"):
-		isRotating = false;
-
-	if Input.is_action_pressed("up") and engineBreakdown == false:
-		if speed > minSpeed and speed <= 0:
-			speed -= acceleration;
-		elif speed < minSpeed:
-			speed = minSpeed;
-		elif speed > 0:
-			speed -= brakeForce;
-		velocity = Vector2(0, speed).rotated(rotation);
-		isMoving = true;
-
-		if LThrusterBreakdown == true:
-			if rotationSpeed > minRotationSpeed and rotationSpeed <= 0:
-				rotationSpeed -= rotationAcceleration;
-			elif rotationSpeed < minSpeed:
-				rotationSpeed = minSpeed;
-			elif rotationSpeed > 0:
-				rotationSpeed -= rotationBrake;
-			isRotating = true;
-		elif RThrusterBreakdown == true:
-			if rotationSpeed < maxRotationSpeed and rotationSpeed >= 0:
-				rotationSpeed += rotationAcceleration;
-			elif rotationSpeed > maxSpeed:
-				rotationSpeed = maxSpeed;
-			elif rotationSpeed < 0:
-				rotationSpeed += rotationBrake;
-			isRotating = true;
-
-	elif Input.is_action_pressed("down") and engineBreakdown == false:
-		if speed < maxSpeed and speed >= 0:
-			speed += acceleration;
-		elif speed > maxSpeed:
-			speed = maxSpeed;
+		if speed > 0:
+			speed -= friction;
 		elif speed < 0:
-			speed += brakeForce;
-		velocity = Vector2(0, speed).rotated(rotation);
-		isMoving = true;
-		if LThrusterBreakdown == true:
-			if rotationSpeed < maxRotationSpeed and rotationSpeed >= 0:
-				rotationSpeed += rotationAcceleration;
-			elif rotationSpeed > maxSpeed:
-				rotationSpeed = maxSpeed;
-			elif rotationSpeed < 0:
-				rotationSpeed += rotationBrake;
-			isRotating = true;
-		elif RThrusterBreakdown == true:
-			if rotationSpeed > minRotationSpeed and rotationSpeed <= 0:
-				rotationSpeed -= rotationAcceleration;
-			elif rotationSpeed < minSpeed:
-				rotationSpeed = minSpeed;
-			elif rotationSpeed > 0:
-				rotationSpeed -= rotationBrake;
-			isRotating = true;
+			speed += friction;
+		if speed > -3 and speed < 3:
+			speed = 0;
+		if rotationSpeed > 0:
+			rotationSpeed -= rotationFriction;
+		elif rotationSpeed < 0:
+			rotationSpeed += rotationFriction;
+		if rotationSpeed > -0.04 and rotationSpeed < 0.04:
+			rotationSpeed = 0;
 
-	if Input.is_action_just_released("up") or Input.is_action_just_released("down"):
-		isMoving = false;
-		if RThrusterBreakdown or LThrusterBreakdown:
+	if engineBreakdown == false:
+		if Input.is_action_pressed("right"):
+			if RThrusterBreakdown == false and LThrusterBreakdown == false:
+				if rotationSpeed < maxRotationSpeed and rotationSpeed >= 0:
+					rotationSpeed += rotationAcceleration;
+				elif rotationSpeed > maxSpeed:
+					rotationSpeed = maxSpeed;
+				elif rotationSpeed < 0:
+					rotationSpeed += rotationBrake;
+				isRotating = true;
+		if Input.is_action_pressed("left"):
+			if RThrusterBreakdown == false and LThrusterBreakdown == false:
+				if rotationSpeed > minRotationSpeed and rotationSpeed <= 0:
+					rotationSpeed -= rotationAcceleration;
+				elif rotationSpeed < minSpeed:
+					rotationSpeed = minSpeed;
+				elif rotationSpeed > 0:
+					rotationSpeed -= rotationBrake;
+				isRotating = true;
+
+		if Input.is_action_just_released("right") or Input.is_action_just_released("left"):
 			isRotating = false;
+
+		if Input.is_action_pressed("up"):
+			if speed > minSpeed and speed <= 0:
+				speed -= acceleration;
+			elif speed < minSpeed:
+				speed = minSpeed;
+			elif speed > 0:
+				speed -= brakeForce;
+			velocity = Vector2(0, speed).rotated(rotation);
+			isMoving = true;
+			if LThrusterBreakdown == true:
+				if rotationSpeed > minRotationSpeed and rotationSpeed <= 0:
+					rotationSpeed -= rotationAcceleration;
+				elif rotationSpeed < minSpeed:
+					rotationSpeed = minSpeed;
+				elif rotationSpeed > 0:
+					rotationSpeed -= rotationBrake;
+				isRotating = true;
+			elif RThrusterBreakdown == true:
+				if rotationSpeed < maxRotationSpeed and rotationSpeed >= 0:
+					rotationSpeed += rotationAcceleration;
+				elif rotationSpeed > maxSpeed:
+					rotationSpeed = maxSpeed;
+				elif rotationSpeed < 0:
+					rotationSpeed += rotationBrake;
+				isRotating = true;
+
+		elif Input.is_action_pressed("down"):
+			if speed < maxSpeed and speed >= 0:
+				speed += acceleration;
+			elif speed > maxSpeed:
+				speed = maxSpeed;
+			elif speed < 0:
+				speed += brakeForce;
+			velocity = Vector2(0, speed).rotated(rotation);
+			isMoving = true;
+			if LThrusterBreakdown == true:
+				if rotationSpeed < maxRotationSpeed and rotationSpeed >= 0:
+					rotationSpeed += rotationAcceleration;
+				elif rotationSpeed > maxSpeed:
+					rotationSpeed = maxSpeed;
+				elif rotationSpeed < 0:
+					rotationSpeed += rotationBrake;
+				isRotating = true;
+			elif RThrusterBreakdown == true:
+				if rotationSpeed > minRotationSpeed and rotationSpeed <= 0:
+					rotationSpeed -= rotationAcceleration;
+				elif rotationSpeed < minSpeed:
+					rotationSpeed = minSpeed;
+				elif rotationSpeed > 0:
+					rotationSpeed -= rotationBrake;
+				isRotating = true;
+
+		if Input.is_action_just_released("up") or Input.is_action_just_released("down"):
+			isMoving = false;
+			if RThrusterBreakdown or LThrusterBreakdown:
+				isRotating = false;
 
 
 
