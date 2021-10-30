@@ -22,15 +22,15 @@ animations = [ {
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "3",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "destroy",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]

@@ -18,6 +18,7 @@ var rightCannon : bool = true;
 export (PackedScene) var Projectile : PackedScene;
 
 
+
 ###Ready function###
 func _ready():
 	rNG.randomize();
@@ -28,6 +29,7 @@ func _ready():
 		trackerPath = "PlayerWithShip/Ship/Position2D/LeftTracker";
 	elif randomTracker == 3:
 		trackerPath = "PlayerWithShip/Ship/Position2D/RightTracker";
+
 
 
 ###Get Input function###
@@ -52,21 +54,17 @@ func getInput():
 		elif get_parent().get_node("PlayerWithShip/Ship").speed == 0:
 			velocity = Vector2(0, -80).rotated(rotation);
 
-	if distanceToPlayerShip < (MIN_DISTANCE * 2) and canShoot == true:
-		$Cooldown.start();
-		canShoot = false;
-		if rightCannon == true:
-			rightCannon = false;
-			$AnimatedSprite.animation = "RShooting";
-			var projectile = Projectile.instance();
-			owner.add_child(projectile);
-			projectile.transform = $RCannon.global_transform;
-		elif rightCannon == false:
-			rightCannon = true;
-			$AnimatedSprite.animation = "LShooting";
-			var projectile = Projectile.instance();
-			owner.add_child(projectile);
-			projectile.transform = $LCannon.global_transform;
+	if $LeftRaycast.is_colliding() or $RightRaycast.is_colliding():
+		var collidedNodeName : String;
+		if $LeftRaycast.is_colliding():
+			collidedNodeName = $LeftRaycast.get_collider().name;
+		elif $RightRaycast.is_colliding():
+			collidedNodeName = $RightRaycast.get_collider().name;
+		if canShoot:
+			if collidedNodeName.begins_with("Ship"):
+				shoot(1);
+			elif collidedNodeName.begins_with("Asteroid"):
+				shoot(0.1);
 
 
 
@@ -79,6 +77,26 @@ func _physics_process(delta):
 	$".".rotation_degrees += 90;
 
 	velocity = move_and_slide(velocity);
+
+
+
+###Function to shoot###
+func shoot(var waitTime: float):
+	$Cooldown.wait_time = waitTime;
+	$Cooldown.start();
+	canShoot = false;
+	if rightCannon == true:
+		rightCannon = false;
+		$AnimatedSprite.animation = "RShooting";
+		var projectile = Projectile.instance();
+		owner.add_child(projectile);
+		projectile.transform = $RCannon.global_transform;
+	elif rightCannon == false:
+		rightCannon = true;
+		$AnimatedSprite.animation = "LShooting";
+		var projectile = Projectile.instance();
+		owner.add_child(projectile);
+		projectile.transform = $LCannon.global_transform;
 
 
 
