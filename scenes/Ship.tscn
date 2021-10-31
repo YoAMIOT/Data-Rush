@@ -52,14 +52,12 @@ Projectile = ExtResource( 11 )
 
 [node name="Int" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 3
 playing = true
 
 [node name="Ext" type="AnimatedSprite" parent="."]
 visible = false
 z_index = 2
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="Turret" parent="." instance=ExtResource( 9 )]
@@ -78,6 +76,7 @@ polygon = PoolVector2Array( -0.0778542, -64.0492, 13.9317, -62.9001, 25.9525, -5
 [node name="Camera" type="Camera2D" parent="."]
 rotating = true
 current = true
+zoom = Vector2( 0.12, 0.12 )
 
 [node name="ShipControllerArea" type="Area2D" parent="."]
 visible = false
