@@ -160,6 +160,11 @@ func _physics_process(delta):
 	if isReloading == true:
 		canShoot = false;
 
+	if isReloading:
+		$Turret.animation = "reload";
+	elif !isReloading:
+		$Turret.animation = "default";
+
 
 
 ###Function to apply the rotation to the turret###
@@ -194,11 +199,6 @@ func turretControl():
 		elif isReloading == false && ammo <= 0:
 			isReloading = true;
 			$ReloadCooldown.start();
-
-	if isReloading:
-		$Turret.animation = "reload";
-	elif !isReloading:
-		$Turret.animation = "default";
 
 
 

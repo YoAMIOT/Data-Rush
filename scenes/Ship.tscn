@@ -58,6 +58,7 @@ playing = true
 visible = false
 z_index = 2
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Turret" parent="." instance=ExtResource( 9 )]
