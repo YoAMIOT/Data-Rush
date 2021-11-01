@@ -32,7 +32,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
@@ -45,19 +45,19 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 9.86456, 5.48621 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10.4555, 5.04514 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 6.10735, 5.73075 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10, 7.95026 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 28.6758, 1.22137 )
 
 [node name="Ship" type="KinematicBody2D" groups=[
@@ -68,20 +68,19 @@ Projectile = ExtResource( 11 )
 
 [node name="Int" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Ext" type="AnimatedSprite" parent="."]
 visible = false
 z_index = 2
 frames = SubResource( 2 )
-frame = 2
 playing = true
 
 [node name="Turret" type="AnimatedSprite" parent="."]
 visible = false
 z_index = 2
-frames = SubResource( 8 )
+frames = SubResource( 3 )
 playing = true
 
 [node name="LCannon" type="Position2D" parent="Turret"]
@@ -114,28 +113,28 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ControlAreas/ShipControllerArea"]
 position = Vector2( -1.96054, -55.4996 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="BlasterControllerArea" type="Area2D" parent="ControlAreas"]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ControlAreas/BlasterControllerArea"]
 position = Vector2( -0.078743, 0.866196 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="RepairControllerArea" type="Area2D" parent="ControlAreas"]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ControlAreas/RepairControllerArea"]
 position = Vector2( -13.749, 48.1534 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="DataControllerArea" type="Area2D" parent="ControlAreas"]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ControlAreas/DataControllerArea"]
 position = Vector2( 36.0177, 11.9616 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="DamageAreas" type="Node2D" parent="."]
 
@@ -162,7 +161,7 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageAreas/EngineCollision"]
 position = Vector2( 0, 62.0667 )
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="BodyCollision" type="Area2D" parent="DamageAreas" groups=[
 "playerShip",

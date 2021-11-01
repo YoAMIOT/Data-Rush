@@ -4,6 +4,8 @@ extends KinematicBody2D
 const MAX_HEALTH : int = 1000;
 const MAX_AMMO : int = 4;
 
+
+
 ###Variables###
 var playerInShipControllerArea : bool = false;
 var playerInBlasterControllerArea : bool = false;
@@ -39,9 +41,34 @@ var ammo : int = 4;
 var isReloading : bool = false;
 
 
+
+###Paths###
+var turretPath : String = "Turret";
+var playerPath : String = "Player";
+var shootingCooldownPath : String = "Timers/ShootingCooldown";
+var reloadCooldownPath : String = "Timers/ReloadCooldown";
+var LCannonPath : String = turretPath + "/LCannon";
+var RCannonPath : String = turretPath + "/RCannon";
+var repairUiPath : String = "RepairUI"
+var repairTurretPath : String = repairUiPath + "/Turret";
+var repairCockpitPath : String = repairUiPath + "/Cockpit";
+var repairEnginePath : String = repairUiPath + "/Engine";
+var RThrusterRepairPath : String = repairUiPath + "/RThruster";
+var LThrusterRepairPath : String = repairUiPath + "/LThruster";
+var stationPath : String = "Station"
+var shipSpawnPath : String = stationPath + "/ShipSpawn";
+
+
+
 ###Ready Function###
 func _ready():
-	$Turret.rotation_degrees = 0;
+	get_node(turretPath).rotation_degrees = 0;
+	$".".global_position = get_parent().get_parent().get_node(shipSpawnPath).global_position;
+	$".".rotation = get_parent().get_parent().get_node(stationPath).rotation;
+	get_parent().get_node(playerPath).global_position = get_parent().get_parent().get_node(shipSpawnPath).global_position;
+	
+
+
 
 ###Function to get the inputs###
 func getInput():
@@ -145,7 +172,7 @@ func getInput():
 
 ###Process Function###
 func _physics_process(delta):
-	if get_parent().get_node("Player").isControllingTheShip:
+	if get_parent().get_node(playerPath).isControllingTheShip:
 		getInput();
 		applyFriction();
 		rotation += rotationSpeed * delta;
@@ -154,51 +181,51 @@ func _physics_process(delta):
 		speed = 0;
 		rotationSpeed = 0;
 
-	if get_parent().get_node("Player").isControllingTurret:
+	if get_parent().get_node(playerPath).isControllingTurret:
 		turretControl();
 
 	if isReloading == true:
 		canShoot = false;
 
 	if isReloading:
-		$Turret.animation = "reload";
+		get_node(turretPath).animation = "reload";
 	elif !isReloading:
-		$Turret.animation = "default";
+		get_node(turretPath).animation = "default";
 
 
 
 ###Function to apply the rotation to the turret###
 func turretControl():
 	var mousePosition : Vector2 = get_global_mouse_position();
-	if $Turret.get_angle_to(mousePosition) + deg2rad(90) > 0:
-		$Turret.rotation_degrees += turretRotationSpeed;
-	elif $Turret.get_angle_to(mousePosition) + deg2rad(90) < 0:
-		$Turret.rotation_degrees -= turretRotationSpeed;
-	if $Turret.get_angle_to(mousePosition) + deg2rad(90) > deg2rad(-5) and $Turret.get_angle_to(mousePosition) + deg2rad(90) < deg2rad(5):
-		$Turret.look_at(mousePosition);
-		$Turret.rotation_degrees += 90;
+	if get_node(turretPath).get_angle_to(mousePosition) + deg2rad(90) > 0:
+		get_node(turretPath).rotation_degrees += turretRotationSpeed;
+	elif get_node(turretPath).get_angle_to(mousePosition) + deg2rad(90) < 0:
+		get_node(turretPath).rotation_degrees -= turretRotationSpeed;
+	if get_node(turretPath).get_angle_to(mousePosition) + deg2rad(90) > deg2rad(-5) and get_node(turretPath).get_angle_to(mousePosition) + deg2rad(90) < deg2rad(5):
+		get_node(turretPath).look_at(mousePosition);
+		get_node(turretPath).rotation_degrees += 90;
 
 	if Input.is_action_just_pressed("shoot") and canShoot:
 		if isReloading == false && ammo > 0:
 			canShoot = false;
-			get_node("Timers/ShootingCooldown").start();
+			get_node(shootingCooldownPath).start();
 			ammo -= 1;
 
 			if rightCannon == true:
 				rightCannon = false;
 				var RProjectile = Projectile.instance();
 				owner.add_child(RProjectile);
-				RProjectile.transform = get_node("Turret/RCannon").global_transform;
+				RProjectile.transform = get_node(RCannonPath).global_transform;
 
 			elif rightCannon == false:
 				rightCannon = true;
 				var LProjectile = Projectile.instance();
 				owner.add_child(LProjectile);
-				LProjectile.transform = get_node("Turret/LCannon").global_transform;
+				LProjectile.transform = get_node(LCannonPath).global_transform;
 
 		elif isReloading == false && ammo <= 0:
 			isReloading = true;
-			get_node("Timers/ReloadCooldown").start();
+			get_node(reloadCooldownPath).start();
 
 
 
@@ -289,10 +316,10 @@ func thrusterDamage(var isRight : bool):
 	if random == 12:
 		if isRight == true:
 			RThrusterBreakdown = true;
-			get_parent().get_node("Ship/RepairUI/RThruster").visible = true;
+			get_node(RThrusterRepairPath).visible = true;
 		elif isRight == false:
 			LThrusterBreakdown = true;
-			get_parent().get_node("Ship/RepairUI/LThruster").visible = true;
+			get_node(LThrusterRepairPath).visible = true;
 
 
 
@@ -304,7 +331,7 @@ func _on_EngineCollision_area_entered(area):
 		var random = rNG.randi_range(1,20);
 		if random == 13:
 			engineBreakdown = true;
-			get_parent().get_node("Ship/RepairUI/Engine").visible = true;
+			get_node(repairEnginePath).visible = true;
 
 
 
@@ -323,8 +350,8 @@ func _on_CockpitCollision_area_entered(area):
 		var random = rNG.randi_range(1,30);
 		if random == 19:
 			cockpitBreakdown = true;
-			get_parent().get_node("Ship/RepairUI/Cockpit").visible = true;
-			if get_parent().get_node("Player").isControllingTheShip == true:
+			get_node(repairCockpitPath).visible = true;
+			if get_parent().get_node(playerPath).isControllingTheShip == true:
 				get_parent().exitShipControl();
 
 
@@ -337,6 +364,6 @@ func _on_TurretCollision_area_entered(area):
 		var random = rNG.randi_range(1,30);
 		if random == 17:
 			turretBreakdown = true;
-			get_parent().get_node("Ship/RepairUI/Turret").visible = true;
-			if get_parent().get_node("Player").isControllingTurret == true:
+			get_node(repairTurretPath).visible = true;
+			if get_parent().get_node(playerPath).isControllingTurret == true:
 				get_parent().exitShipControl();

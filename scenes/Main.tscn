@@ -7,8 +7,15 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="PlayerWithShip" parent="." instance=ExtResource( 2 )]
+
+[node name="Station" parent="." instance=ExtResource( 4 )]
+position = Vector2( -629.49, -468.732 )
+rotation = 2.28464
+scale = Vector2( 1, 1 )
+
 [node name="EnnemyFighter10" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 488 )
+position = Vector2( -8.00916, 159.63 )
 
 [node name="Asteroid19" parent="." instance=ExtResource( 1 )]
 position = Vector2( -360, -184 )
@@ -169,8 +176,3 @@ position = Vector2( 200, -272 )
 
 [node name="Asteroid" parent="." instance=ExtResource( 1 )]
 position = Vector2( 304, -264 )
-
-[node name="PlayerWithShip" parent="." instance=ExtResource( 2 )]
-
-[node name="Station" parent="." instance=ExtResource( 4 )]
-position = Vector2( 0, 45 )
