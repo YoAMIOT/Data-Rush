@@ -16,6 +16,7 @@ var health : int = 10;
 var canShoot : bool = true;
 var rightCannon : bool = true;
 export (PackedScene) var Projectile : PackedScene;
+var shipNodePath : String = "PlayerWithShip/Ship";
 
 
 
@@ -24,34 +25,34 @@ func _ready():
 	rNG.randomize();
 	var randomTracker : int = rNG.randi_range(1,3);
 	if randomTracker == 1:
-		trackerPath = "PlayerWithShip/Ship/Position2D/MidTracker";
+		trackerPath = shipNodePath + "/Position2D/MidTracker";
 	elif randomTracker == 2:
-		trackerPath = "PlayerWithShip/Ship/Position2D/LeftTracker";
+		trackerPath = shipNodePath + "/Position2D/LeftTracker";
 	elif randomTracker == 3:
-		trackerPath = "PlayerWithShip/Ship/Position2D/RightTracker";
+		trackerPath = shipNodePath + "/Position2D/RightTracker";
 
 
 
 ###Get Input function###
 func getInput():
 	velocity = Vector2(0, 0);
-	var sub : Vector2 = Vector2(get_parent().get_node("PlayerWithShip/Ship").global_position - $".".global_position);
+	var sub : Vector2 = Vector2(get_parent().get_node(shipNodePath).global_position - $".".global_position);
 	var distanceToPlayerShip : float = sqrt((sub.x * sub.x) + (sub.y * sub.y));
-	var playerShipSeed = get_parent().get_node("PlayerWithShip/Ship").speed;
+	var playerShipSeed = get_parent().get_node(shipNodePath).speed;
 	if playerShipSeed < 0:
 		playerShipSeed = playerShipSeed * -1;
 
 	if distanceToPlayerShip > (MIN_DISTANCE * 2):
 		velocity = Vector2(0, -MAX_SPEED).rotated(rotation);
 	elif distanceToPlayerShip < (MIN_DISTANCE * 2) and distanceToPlayerShip > MIN_DISTANCE:
-		if get_parent().get_node("PlayerWithShip/Ship").speed != 0:
+		if get_parent().get_node(shipNodePath).speed != 0:
 			velocity = Vector2(0, (-playerShipSeed)).rotated(rotation);
-		elif get_parent().get_node("PlayerWithShip/Ship").speed == 0:
+		elif get_parent().get_node(shipNodePath).speed == 0:
 			velocity = Vector2(0, -200).rotated(rotation);
 	elif distanceToPlayerShip < MIN_DISTANCE and distanceToPlayerShip >= MINIX_DISTANCE:
-		if get_parent().get_node("PlayerWithShip/Ship").speed != 0:
+		if get_parent().get_node(shipNodePath).speed != 0:
 			velocity = Vector2(0, (-playerShipSeed / 2)).rotated(rotation);
-		elif get_parent().get_node("PlayerWithShip/Ship").speed == 0:
+		elif get_parent().get_node(shipNodePath).speed == 0:
 			velocity = Vector2(0, -80).rotated(rotation);
 
 	if $LeftRaycast.is_colliding() or $RightRaycast.is_colliding():

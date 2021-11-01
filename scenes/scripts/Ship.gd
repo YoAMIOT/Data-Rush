@@ -181,7 +181,7 @@ func turretControl():
 	if Input.is_action_just_pressed("shoot") and canShoot:
 		if isReloading == false && ammo > 0:
 			canShoot = false;
-			get_node("ShootingCooldown").start();
+			get_node("Timers/ShootingCooldown").start();
 			ammo -= 1;
 
 			if rightCannon == true:
@@ -198,7 +198,7 @@ func turretControl():
 
 		elif isReloading == false && ammo <= 0:
 			isReloading = true;
-			$ReloadCooldown.start();
+			get_node("Timers/ReloadCooldown").start();
 
 
 
