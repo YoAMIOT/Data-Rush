@@ -9,6 +9,8 @@ var rNG : RandomNumberGenerator = RandomNumberGenerator.new();
 var isWalking : bool = false;
 var isJumping : bool = true;
 var isConnectedToTheShip : bool = false;
+var inTurretArea : bool = false;
+var isControllingTurret : bool = false;
 
 
 
@@ -36,6 +38,17 @@ func getInput():
 		if Input.is_action_just_released("left"):
 			isWalking = false;
 
+	if Input.is_action_just_pressed("interact"):
+		if isConnectedToTheShip == true:
+			exitControl();
+		elif isConnectedToTheShip == false:
+			if inTurretArea == true:
+				isConnectedToTheShip = true;
+				isControllingTurret = true;
+				get_parent().get_node("Turret").isControlled = true;
+				$Camera2D.current = false;
+				get_parent().get_node("Turret/Camera2D").current = true;
+
 
 
 ###Process Function###
@@ -56,6 +69,16 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump") and !isConnectedToTheShip:
 			isJumping = true;
 			velocity.y = jumpForce;
+
+
+
+func exitControl():
+	if isControllingTurret == true:
+		isConnectedToTheShip = false;
+		isControllingTurret = false;
+		get_parent().get_node("Turret").isControlled = false;
+		$Camera2D.current = true;
+		get_parent().get_node("Turret/Camera2D").current = false;
 
 
 
@@ -87,3 +110,11 @@ func animate():
 				$AnimatedSprite.animation = "jump_ascent";
 			elif velocity.y > 1:
 				$AnimatedSprite.animation = "jump_descent";
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("player"):
+		inTurretArea = true;
+func _on_Area2D_body_exited(body):
+	if body.is_in_group("player"):
+		inTurretArea = false;

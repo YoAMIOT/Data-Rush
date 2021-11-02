@@ -1,6 +1,6 @@
 extends Node2D
 
-###Variables###
+###Paths###
 var playerPath : String = "Player";
 var shipPath : String = "Ship";
 var cameraPath : String = shipPath + "/Camera";
