@@ -12,7 +12,6 @@
 [node name="Station" parent="." instance=ExtResource( 4 )]
 position = Vector2( -629.49, -468.732 )
 rotation = 2.28464
-scale = Vector2( 1, 1 )
 
 [node name="EnnemyFighter10" parent="." instance=ExtResource( 3 )]
 position = Vector2( -8.00916, 159.63 )

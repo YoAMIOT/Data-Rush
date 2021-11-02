@@ -1,0 +1,160 @@
+[gd_scene load_steps=99 format=2]
+
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking1.png" type="Texture" id=1]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking2.png" type="Texture" id=2]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking3.png" type="Texture" id=3]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking4.png" type="Texture" id=4]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking11.png" type="Texture" id=5]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking34.png" type="Texture" id=6]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking35.png" type="Texture" id=7]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking33.png" type="Texture" id=8]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking13.png" type="Texture" id=9]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking12.png" type="Texture" id=10]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking9.png" type="Texture" id=11]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking10.png" type="Texture" id=12]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking6.png" type="Texture" id=13]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking8.png" type="Texture" id=14]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking14.png" type="Texture" id=15]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking32.png" type="Texture" id=16]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking7.png" type="Texture" id=17]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking5.png" type="Texture" id=18]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking43.png" type="Texture" id=19]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking41.png" type="Texture" id=20]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking45.png" type="Texture" id=21]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking44.png" type="Texture" id=22]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking46.png" type="Texture" id=23]
+[ext_resource path="res://ressources/Player_anim/idle_thinking/idle_thinking42.png" type="Texture" id=24]
+[ext_resource path="res://ressources/Player_anim/jump/jumping_ascent.png" type="Texture" id=25]
+[ext_resource path="res://ressources/Player_anim/jump/jumping_descent.png" type="Texture" id=26]
+[ext_resource path="res://scenes/tuto/scripts/tutoPlayer.gd" type="Script" id=27]
+[ext_resource path="res://ressources/Player_anim/connected/connected4.png" type="Texture" id=192]
+[ext_resource path="res://ressources/Player_anim/connected/connected3.png" type="Texture" id=193]
+[ext_resource path="res://ressources/Player_anim/connected/connected2.png" type="Texture" id=194]
+[ext_resource path="res://ressources/Player_anim/connected/connected1.png" type="Texture" id=195]
+[ext_resource path="res://ressources/Player_anim/walk/walk1.png" type="Texture" id=196]
+[ext_resource path="res://ressources/Player_anim/walk/walk2.png" type="Texture" id=197]
+[ext_resource path="res://ressources/Player_anim/walk/walk3.png" type="Texture" id=198]
+[ext_resource path="res://ressources/Player_anim/walk/walk4.png" type="Texture" id=199]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep11.png" type="Texture" id=200]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep8.png" type="Texture" id=201]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep8.png" type="Texture" id=202]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep12.png" type="Texture" id=203]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep18.png" type="Texture" id=204]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep7.png" type="Texture" id=205]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep2.png" type="Texture" id=206]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep17.png" type="Texture" id=207]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep2.png" type="Texture" id=208]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep13.png" type="Texture" id=209]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep16.png" type="Texture" id=210]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep14.png" type="Texture" id=211]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep5.png" type="Texture" id=212]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep7.png" type="Texture" id=213]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep4.png" type="Texture" id=214]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep5.png" type="Texture" id=215]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep12.png" type="Texture" id=216]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep14.png" type="Texture" id=217]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep11.png" type="Texture" id=218]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep5.png" type="Texture" id=219]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep1.png" type="Texture" id=220]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep3.png" type="Texture" id=221]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep8.png" type="Texture" id=222]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep4.png" type="Texture" id=223]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep20.png" type="Texture" id=224]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep6.png" type="Texture" id=225]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep13.png" type="Texture" id=226]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep15.png" type="Texture" id=227]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep12.png" type="Texture" id=228]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep19.png" type="Texture" id=229]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep15.png" type="Texture" id=230]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep1.png" type="Texture" id=231]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep9.png" type="Texture" id=232]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep9.png" type="Texture" id=233]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep10.png" type="Texture" id=234]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep3.png" type="Texture" id=235]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep9.png" type="Texture" id=236]
+[ext_resource path="res://ressources/Player_anim/idle_sleep1/idle_sleep6.png" type="Texture" id=237]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep10.png" type="Texture" id=238]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep10.png" type="Texture" id=239]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep11.png" type="Texture" id=240]
+[ext_resource path="res://ressources/Player_anim/idle_sleep2/idle_sleep7.png" type="Texture" id=241]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep16.png" type="Texture" id=242]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep13.png" type="Texture" id=243]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep15.png" type="Texture" id=244]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep17.png" type="Texture" id=245]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep18.png" type="Texture" id=246]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep14.png" type="Texture" id=247]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep19.png" type="Texture" id=248]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep21.png" type="Texture" id=249]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep22.png" type="Texture" id=250]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep23.png" type="Texture" id=251]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep28.png" type="Texture" id=252]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep24.png" type="Texture" id=253]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep27.png" type="Texture" id=254]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep30.png" type="Texture" id=255]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep26.png" type="Texture" id=256]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep31.png" type="Texture" id=257]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep29.png" type="Texture" id=258]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep20.png" type="Texture" id=259]
+[ext_resource path="res://ressources/Player_anim/idle_sleep3/idle_sleep25.png" type="Texture" id=260]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.04381, 4.02399 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 195 ), ExtResource( 194 ), ExtResource( 193 ), ExtResource( 192 ) ],
+"loop": true,
+"name": "connected",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": true,
+"name": "jump_descent",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 196 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ) ],
+"loop": true,
+"name": "walk",
+"speed": 6.5
+}, {
+"frames": [ ExtResource( 231 ), ExtResource( 206 ), ExtResource( 235 ), ExtResource( 223 ), ExtResource( 219 ), ExtResource( 225 ), ExtResource( 241 ), ExtResource( 202 ), ExtResource( 236 ), ExtResource( 238 ), ExtResource( 240 ), ExtResource( 228 ), ExtResource( 209 ), ExtResource( 211 ), ExtResource( 230 ), ExtResource( 206 ), ExtResource( 231 ) ],
+"loop": true,
+"name": "idle_windob",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 18 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 19 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "idle_thinking",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 212 ), ExtResource( 213 ), ExtResource( 201 ), ExtResource( 232 ), ExtResource( 239 ), ExtResource( 200 ), ExtResource( 203 ), ExtResource( 243 ), ExtResource( 247 ), ExtResource( 244 ), ExtResource( 242 ), ExtResource( 245 ), ExtResource( 246 ), ExtResource( 248 ), ExtResource( 259 ), ExtResource( 249 ), ExtResource( 250 ), ExtResource( 251 ), ExtResource( 253 ), ExtResource( 260 ), ExtResource( 256 ), ExtResource( 254 ), ExtResource( 252 ), ExtResource( 258 ), ExtResource( 255 ), ExtResource( 257 ), ExtResource( 259 ) ],
+"loop": true,
+"name": "idle_pong",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 220 ), ExtResource( 208 ), ExtResource( 221 ), ExtResource( 214 ), ExtResource( 215 ), ExtResource( 237 ), ExtResource( 205 ), ExtResource( 222 ), ExtResource( 233 ), ExtResource( 234 ), ExtResource( 218 ), ExtResource( 216 ), ExtResource( 226 ), ExtResource( 217 ), ExtResource( 227 ), ExtResource( 210 ), ExtResource( 207 ), ExtResource( 204 ), ExtResource( 229 ), ExtResource( 224 ) ],
+"loop": true,
+"name": "idle_matrix",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "jump_ascent",
+"speed": 5.0
+} ]
+
+[node name="tutoPlayer" type="KinematicBody2D"]
+script = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "connected"
+frame = 1
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.12, 0.12 )
