@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ressources/Tuto/projectile/projectile.png" type="Texture" id=1]
+[ext_resource path="res://scenes/scripts/Projectile.gd" type="Script" id=2]
+[ext_resource path="res://ressources/Tuto/projectile/destroy/destroy1.png" type="Texture" id=3]
+[ext_resource path="res://ressources/Tuto/projectile/destroy/destroy2.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12.492, 2.39854 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "destroy",
+"speed": 7.0
+} ]
+
+[node name="Projectile" type="Area2D" groups=[
+"Projectile",
+]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2.5, -2.5 )
+rotation = 1.5708
+scale = Vector2( 5, 5 )
+z_index = 4
+frames = SubResource( 2 )
+playing = true
+
+[connection signal="area_entered" from="." to="." method="_on_Projectile_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

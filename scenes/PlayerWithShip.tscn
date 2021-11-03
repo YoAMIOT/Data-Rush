@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/scripts/PlayerWithShip.gd" type="Script" id=3]
-[ext_resource path="res://scenes/Crosshair.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/UI/Crosshair.tscn" type="PackedScene" id=4]
 
 [node name="PlayerWithShip" type="Node2D"]
 script = ExtResource( 3 )

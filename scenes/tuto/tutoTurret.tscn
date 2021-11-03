@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ressources/Tuto/turret.png" type="Texture" id=1]
+[ext_resource path="res://scenes/tuto/scripts/tutoTurret.gd" type="Script" id=2]
+[ext_resource path="res://scenes/tuto/tutoProjectile.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,6 +16,8 @@ animations = [ {
 z_index = 2
 frames = SubResource( 1 )
 playing = true
+script = ExtResource( 2 )
+Projectile = ExtResource( 3 )
 
 [node name="LCannon" type="Position2D" parent="."]
 position = Vector2( -6, -26 )
@@ -25,3 +29,9 @@ rotation = -1.5708
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

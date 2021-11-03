@@ -9,9 +9,9 @@
 [ext_resource path="res://ressources/Ship_anim/ship_body_int/ship_int4.png" type="Texture" id=7]
 [ext_resource path="res://scenes/scripts/Ship.gd" type="Script" id=8]
 [ext_resource path="res://ressources/Ship_anim/ship_turret/reload/turret_reload2.png" type="Texture" id=9]
-[ext_resource path="res://scenes/Porthole.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/UI/Porthole.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Projectile.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/RepairUI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/UI/RepairUI.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ressources/Ship_anim/ship_turret/reload/turret_reload1.png" type="Texture" id=13]
 [ext_resource path="res://ressources/Ship_anim/ship_turret/ship_turret.png" type="Texture" id=14]
 [ext_resource path="res://ressources/Ship_anim/ship_turret/reload/turret_reload3.png" type="Texture" id=15]
@@ -75,6 +75,7 @@ playing = true
 visible = false
 z_index = 2
 frames = SubResource( 2 )
+frame = 2
 playing = true
 
 [node name="Turret" type="AnimatedSprite" parent="."]
@@ -202,7 +203,7 @@ position = Vector2( 49, 119 )
 [node name="Timers" type="Node" parent="."]
 
 [node name="ShootingCooldown" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="ReloadCooldown" type="Timer" parent="Timers"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ressources/Station/Station.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Arm.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/station/Arm.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ressources/Station/Station_int.png" type="Texture" id=3]
 
 [node name="Station" type="StaticBody2D"]

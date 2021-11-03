@@ -48,6 +48,8 @@ func getInput():
 				get_parent().get_node("Turret").isControlled = true;
 				$Camera2D.current = false;
 				get_parent().get_node("Turret/Camera2D").current = true;
+				get_parent().get_node("Crosshair").visible = true;
+				get_parent().get_node("TurretPorthole").visible = true;
 
 
 
@@ -79,6 +81,8 @@ func exitControl():
 		get_parent().get_node("Turret").isControlled = false;
 		$Camera2D.current = true;
 		get_parent().get_node("Turret/Camera2D").current = false;
+		get_parent().get_node("Crosshair").visible = false;
+		get_parent().get_node("TurretPorthole").visible = false;
 
 
 
